@@ -24,7 +24,7 @@
         </div>
         <div v-else>
           <button :disabled="isPrevButtonDisabled" class="btn" @click="prev">Назад</button>
-          <button class="btn primary" @click="nextOfFinish(isLastStep)">{{isLastStep ? 'Закончить' : 'Вперед'}}</button>
+          <button class="btn primary" @click="nextOfFinish">{{isLastStep ? 'Закончить' : 'Вперед'}}</button>
         </div>
       </div>
     </div>

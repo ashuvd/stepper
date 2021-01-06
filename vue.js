@@ -16,17 +16,11 @@ const App = {
       ]
     }
   },
-  created() {
-    this.minStepIndex = 0;
-    this.maxStepIndex = this.steps.length - 1;
-  },
   methods: {
     prev() {
       // когда нажимаем кнопку назад
       if (this.activeIndex > 0) {
         this.activeIndex--;
-      } else {
-        this.activeIndex = this.minStepIndex;
       }
     },
     reset() {
@@ -34,16 +28,12 @@ const App = {
       this.activeIndex = 0;
       this.completed = false;
     },
-    nextOfFinish(finish) {
+    nextOfFinish() {
       // кнопка вперед или закончить
-      if (finish) {
+      if (this.isLastStep) {
         this.completed = true;
-      } else {
-        if (this.activeIndex < this.maxStepIndex) {
-          this.activeIndex++;
-        } else {
-          this.activeIndex = this.maxStepIndex;
-        }
+      } else if (this.activeIndex < this.steps.length - 1) {
+        this.activeIndex++;
       }
     },
     setActive(idx) {
@@ -59,11 +49,11 @@ const App = {
     },
     // 2. выключена ли кнопка назад
     isPrevButtonDisabled() {
-      return this.activeIndex === this.minStepIndex;
+      return this.activeIndex === 0;
     },
     // 3. находимся ли мы на последнем шаге
     isLastStep() {
-      return this.activeIndex === this.maxStepIndex;
+      return this.activeIndex === this.steps.length - 1;
     }
   }
 }
